@@ -115,16 +115,16 @@ Changing the "sold as vacant" column to be consistent (Y to yes, N to no)
 
 SELECT SoldAsVacant,
 	CASE WHEN SoldAsVacant = 'Y' THEN 'Yes'
-		 WHEN SoldAsVacant = 'N' THEN 'No'
-		 ELSE SoldAsVacant
+	     WHEN SoldAsVacant = 'N' THEN 'No'
+	     ELSE SoldAsVacant
 	END
 FROM SQLPractice..Housing
 
 UPDATE SQLPractice..Housing
 SET SoldAsVacant = CASE WHEN SoldAsVacant = 'Y' THEN 'Yes'
-						WHEN SoldAsVacant = 'N' THEN 'No'
-						ELSE SoldAsVacant
-				   END
+			WHEN SoldAsVacant = 'N' THEN 'No'
+			ELSE SoldAsVacant
+		   END
 
 
 
@@ -135,14 +135,14 @@ Removing duplicates
 WITH RowNumCTE AS (
 SELECT *,
 ROW_NUMBER() OVER (PARTITION BY 
-						ParcelID,
-						PropertyAddress,
-						SalePrice,
-						SaleDate,
-						LegalReference
-						ORDER BY
-							UniqueID
-					) AS row_num
+				ParcelID,
+				PropertyAddress,
+				SalePrice,
+				SaleDate,
+				LegalReference
+				ORDER BY
+					UniqueID
+		  ) AS row_num
 FROM SQLPractice..Housing
 )
 
